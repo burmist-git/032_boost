@@ -1,0 +1,22 @@
+conda create --name boost_python
+conda activate boost_python
+conda install python=3.7.0 -y
+conda install -c conda-forge python-configuration -y
+ln -s /home/burmist/miniconda3/envs/boost_python/bin/python3-config /home/burmist/miniconda3/envs/boost_python/bin/python-config
+
+
+g++ -ftemplate-depth-128 -O0 -fno-inline -Wall -g -fPIC -I/home/burmist/miniconda3/envs/boost_python/include/python3.7m -c -o hello.o hello.cpp
+g++ -o hello_ext.so -Wl,-h -Wl,hello_ext.so -shared -Wl,--start-group hello.o -Wl,-Bstatic -Wl,-Bdynamic -L/home/burmist/miniconda3/envs/boost_python/lib -lboost_python3 -ldl -lpthread -lutil -Wl,--end-group
+#sudo ldconfig
+tmp/boost_1_76_0/libs/python/build/Jamfile
+    using python : 3.7 : /home/burmist/miniconda3/envs/boost_python/bin/python : /home/burmist/miniconda3/envs/boost_python/include/python3.7m ;
+    using python : 3.7 : /home/burmist/miniconda3/envs/boost_python/bin/python : /home/burmist/miniconda3/envs/boost_python/include/python3.7m ;
+
+project-config.jam
+
+# Python configuration
+import python ;
+if ! [ python.configured ]
+{
+    using python : 3.7 : "/home/burmist/miniconda3/envs/boost_python/include/python3.7m" ;
+}

@@ -1,0 +1,13 @@
+*~
+boost_1_76_0
+boost_1_76_0_install
+boost_1_76_0.tar.gz
+example/bin
+example/Jamroot
+example/numpy
+example/numpy_jam
+example/numpy_jam_tmp
+example/quickstart
+example/tutorial/log_gaussian_boost_python.so
+example/tutorial/tmp
+example/tutorial/log_gaussian_boost_python.o
